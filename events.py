@@ -2,106 +2,73 @@ import berconpy as rcon
 
 async def on_message(message: str):
     """
-        Отлавливает любое сообщение от сервера
-        message - сообщение
+    Срабатывает при любом сообщении от сервера.
     """
     print(f'[SERVER] {message}')
 
+
 async def on_player_connect(player: rcon.Player):
     """
-        Срабатывает когда игрок подсоединяется к серверу
-        player - игрок
-
-        print(f'[on_player_connect] {player.id}')
-        print(f'[on_player_connect] {player.name}')
-        print(f'[on_player_connect] {player.guid}') Не выводит на этой стадии
-        print(f'[on_player_connect] {player.addr}')
-        print(f'[on_player_connect] {player.ping}') Не выводит на этой стадии
-        print(f'[on_player_connect] {player.is_guid_valid}')
-        print(f'[on_player_connect] {player.in_lobby}')
-        print(f'[on_player_connect] {player.cache}')
-        print(f'[on_player_connect] {player.client}')
-        print(f'[on_player_connect] {player.ip}')
+    Срабатывает при подключении игрока к серверу.
     """
-    print(f'[on_player_connect] {player}')
-
-
+    try:
+        print(f'[on_player_connect] ID: {player.id}, Name: {player.name}, IP: {player.ip}, Addr: {player.addr}, In lobby: {player.in_lobby}')
+    except Exception as e:
+        print(f'[on_player_connect][ERROR] {e}')
 
 
 async def on_player_disconnect(player: rcon.Player):
     """
-        Срабатывает когда игрок отсоединяется от сервера
-        player - игрок
-
-        print(f'[on_player_disconnect] {player.id}')
-        print(f'[on_player_disconnect] {player.name}')
-        print(f'[on_player_disconnect] {player.guid}')
-        print(f'[on_player_disconnect] {player.addr}')
-        print(f'[on_player_disconnect] {player.ping}')
-        print(f'[on_player_disconnect] {player.is_guid_valid}')
-        print(f'[on_player_disconnect] {player.in_lobby}')
-        print(f'[on_player_disconnect] {player.cache}')
-        print(f'[on_player_disconnect] {player.client}')
-        print(f'[on_player_disconnect] {player.ip}')
+    Срабатывает при отключении игрока от сервера.
     """
-    print(f'[on_player_disconnect] {player}')
+    try:
+        print(f'[on_player_disconnect] ID: {player.id}, Name: {player.name}, IP: {player.ip}')
+    except Exception as e:
+        print(f'[on_player_disconnect][ERROR] {e}')
 
 
 async def on_player_guid(player: rcon.Player):
     """
-        Срабатывает когда сервер получает GUID игрока
-        player - игрок
-
-        print(f'[on_player_guid] {player.id}')
-        print(f'[on_player_guid] {player.name}')
-        print(f'[on_player_guid] {player.guid}')
-        print(f'[on_player_guid] {player.addr}')
-        print(f'[on_player_guid] {player.ping}') Не выводит на этой стадии
-        print(f'[on_player_guid] {player.is_guid_valid}')
-        print(f'[on_player_guid] {player.in_lobby}')
-        print(f'[on_player_guid] {player.cache}')
-        print(f'[on_player_guid] {player.client}')
-        print(f'[on_player_guid] {player.ip}')
+    Срабатывает, когда сервер получает GUID игрока.
     """
-    print(f'[on_player_guid] {player}')
+    try:
+        print(f'[on_player_guid] ID: {player.id}, Name: {player.name}, GUID: {player.guid}, Valid: {player.is_guid_valid}')
+    except Exception as e:
+        print(f'[on_player_guid][ERROR] {e}')
 
 
 async def on_player_kick(player: rcon.Player, reason: str):
     """
-        Срабатывает когда игрока кикают сервера
-        player - игрок
-        reason - причина
+    Срабатывает при кике игрока с сервера.
     """
-    print(f'[on_player_kick] {player} {reason}')
+    try:
+        print(f'[on_player_kick] Name: {player.name}, Reason: {reason}')
+    except Exception as e:
+        print(f'[on_player_kick][ERROR] {e}')
+
 
 async def on_player_verify_guid(player: rcon.Player):
     """
-        Срабатывает когда сервер проверяет GUID игрока
-        player - игрок
-
-        print(f'[on_player_verify_guid] {player.id}')
-        print(f'[on_player_verify_guid] {player.name}')
-        print(f'[on_player_verify_guid] {player.guid}')
-        print(f'[on_player_verify_guid] {player.addr}')
-        print(f'[on_player_verify_guid] {player.ping}') Не выводит на этой стадии
-        print(f'[on_player_verify_guid] {player.is_guid_valid}')
-        print(f'[on_player_verify_guid] {player.in_lobby}')
-        print(f'[on_player_verify_guid] {player.cache}')
-        print(f'[on_player_verify_guid] {player.client}')
-        print(f'[on_player_verify_guid] {player.ip}')
+    Срабатывает при проверке GUID игрока сервером.
     """
-    print(f'[on_player_verify_guid] {player}')
+    try:
+        print(f'[on_player_verify_guid] ID: {player.id}, GUID: {player.guid}, Valid: {player.is_guid_valid}')
+    except Exception as e:
+        print(f'[on_player_verify_guid][ERROR] {e}')
 
 
 async def on_raw_event(packet):
     """
-        Срабатывает для каждого анализируемого пакета
-        packet - пакет
+    Срабатывает для каждого необработанного пакета от сервера.
     """
-    print(packet)
+    try:
+        print(f'[on_raw_event] {packet}')
+    except Exception as e:
+        print(f'[on_raw_event][ERROR] {e}')
+
 
 async def on_login():
     """
-        Срабатывает когда RCON подключается к серверу
+    Срабатывает при успешном подключении к RCON.
     """
-    print("Подключение к RCON")
+    print("🔐 Успешное подключение к RCON.")
